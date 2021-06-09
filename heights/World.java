@@ -8,7 +8,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class World {
 	private List<Country> countries;
@@ -70,4 +72,20 @@ public class World {
 		return map;
 	}
 
+	public Map<String, Set<Country>> countriesPerContinent(){
+		Map<String, Set<Country>> map = new TreeMap<>();
+		for (Country c : countries) {
+			map.putIfAbsent(c.getContinent(), new TreeSet<Country>());
+			map.get(c.getContinent()).add(c);
+		}
+		return map;
+	}
+	
+	public Set<Country> countriesByHeight(){
+		Set<Country> set = new TreeSet<>(new CompHeight());
+		for(Country c : countries) {
+			set.add(c);
+		}
+		return set;
+	}
 }

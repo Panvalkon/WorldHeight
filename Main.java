@@ -10,11 +10,11 @@ public class Main {
         World.print(ps.countriesPerHeight());
         System.out.println("Number of countries per continent");
         World.print(ps.numberOfCountriesPerContinent());
-/*        System.out.println("Countries per continent");
+        System.out.println("Countries per continent");
         World.print(ps.countriesPerContinent());
         System.out.println("Set of countries sorted by height");
         System.out.println(ps.countriesByHeight());
-        System.out.println("Countries per continent, sorted by height");
+/*         System.out.println("Countries per continent, sorted by height");
         World.print(ps.countriesByHeightPerContinent());
         System.out.println("Countries per continent, sorted by height from greater to smaller");
         World.print(ps.countriesByReverseHeightPerContinent());
