@@ -7,7 +7,9 @@ public class Country implements Comparable<Country> {
 	private String continent;
 	private double height;
 
+
 	public Country(String name, String continent, double height) {
+		super();
 		this.name = name;
 		this.continent = continent;
 		this.height = height;
@@ -44,6 +46,6 @@ public class Country implements Comparable<Country> {
 	public String toString() {
 		StringJoiner sj = new StringJoiner(",", "Country(", ")");
 		sj.add(name).add(continent).add(String.valueOf(height));
-		return null;
+		return sj.toString();
 	}
 }
