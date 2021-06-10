@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -87,5 +89,58 @@ public class World {
 			set.add(c);
 		}
 		return set;
+	}
+	
+	public Map<String, Set<Country>> countriesByHeightPerContinent(){
+		Map <String, Set<Country>> map = new TreeMap<>();
+		for (Country c : countries) {
+			map.putIfAbsent(c.getContinent(), new TreeSet<Country>(new CompHeight()));
+			map.get(c.getContinent()).add(c);
+		}
+		return map;
+	}
+	
+	public Map<String, Set<Country>>  countriesByReverseHeightPerContinent(){
+		Map <String, Set<Country>> map = new TreeMap<>();
+		for (Country c : countries) {
+			map.putIfAbsent(c.getContinent(), new TreeSet<Country>(new CompHeight().reversed()));
+			map.get(c.getContinent()).add(c);
+		}
+		return map;
+	}
+	
+	public Map<Character, Set<Country>> countriesPerInitial(){
+		Map <Character, Set<Country>> map = new TreeMap<>();
+		for (Country c : countries) {			
+			Character a = c.getName().charAt(0);
+			map.putIfAbsent(a, new TreeSet<>());
+			map.get(a).add(c);
+		}
+		return map;
+	}
+
+	public Map<String, Double> averagePerContinent(){
+		Map<String, Double> map = new TreeMap<>();
+		Map<String, Set<Country>> set = countriesPerContinent();
+		for (Entry<String, Set<Country>> cont : set.entrySet()) {
+			int num = 0;
+			double height = 0;
+			for(Country c : cont.getValue()) {
+				height += c.getHeight();
+				num++;
+			}
+			map.put(cont.getKey(), height/num);
+		}
+		return map;
+	}
+	
+	public List<String> continentsWithMoreCountries(){
+		Map<String, Integer> map = numberOfCountriesPerContinent();
+		SortedMap<Integer, List<String>> map2 = new TreeMap<>();
+		for (Entry<String, Integer> cont : map.entrySet()) {
+			map2.putIfAbsent(cont.getValue(), new ArrayList<String>());
+			map2.get(cont.getValue()).add(cont.getKey());
+		}
+		return new ArrayList<>(map2.get(map2.lastKey()));
 	}
 }

@@ -14,7 +14,7 @@ public class Main {
         World.print(ps.countriesPerContinent());
         System.out.println("Set of countries sorted by height");
         System.out.println(ps.countriesByHeight());
-/*         System.out.println("Countries per continent, sorted by height");
+        System.out.println("Countries per continent, sorted by height");
         World.print(ps.countriesByHeightPerContinent());
         System.out.println("Countries per continent, sorted by height from greater to smaller");
         World.print(ps.countriesByReverseHeightPerContinent());
@@ -24,7 +24,7 @@ public class Main {
         World.print(ps.averagePerContinent());
         System.out.println("Continents with more countries");
         System.out.println(ps.continentsWithMoreCountries());
-*/    }
+    }
 }
 
 /*
